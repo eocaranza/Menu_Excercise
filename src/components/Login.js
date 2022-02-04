@@ -1,7 +1,10 @@
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   return (
     <div className="container login">
       <Form>
@@ -27,7 +30,11 @@ const Login = ({ onLogin }) => {
                 className="login-button"
                 variant="secondary"
                 type="submit"
-                onClick={onLogin}
+                onSubmit={() => {
+                  if (location.state?.from) {
+                    navigate(location.state.from);
+                  }
+                }}
               >
                 Login
               </Button>
