@@ -1,33 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState } from 'react';
-import Login from './components/Login';
-import Header from './components/Header';
-import { BrowserRouter as Router } from 'react-router-dom';
+import "./App.css";
+import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/Login";
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(true);
+  let navigate = useNavigate();
 
+  useEffect(() => {
+    if (showLogin) navigate("/Login");
+  }, []);
 
+  const loginAction = () => {
+    alert("Loggeado");
+  };
 
   return (
-    <Router>
     <div className="container">
-      <Header
-      onAdd={()=>setShowLogin(!showLogin)}
-      showAdd={showLogin}
-      ></Header>
-      <div className='row'>
-      <div className='column'>
-        <h1>Item</h1>
-      </div>
-        <div className='column'>
-        {showLogin && <Login onLogin={()=>alert('Login')}></Login>}
-        </div>
-      </div>
+      <Router>
+        <Routes>
+          <Route
+            path="/Login"
+            exact
+            element={<Login onLogin={loginAction} />}
+          />
+          <Route
+            path="/"
+            exact
+            element={
+              <div>
+                <h1>Hola mundo</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <div>
+                <h1>Error: Page not Found</h1>
+              </div>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
-    </Router>
   );
-}
+};
 
 export default App;
