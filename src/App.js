@@ -1,21 +1,12 @@
-import "./App.css";
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(true);
-  let navigate = useNavigate();
 
-  useEffect(() => {
-    if (showLogin) navigate("/Login");
-  }, []);
+  useEffect(() => {});
 
   const loginAction = () => {
     alert("Loggeado");
