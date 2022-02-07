@@ -7,11 +7,13 @@ import PrivateRoute from "./PrivateRoute";
 const App = () => {
   const [showLogin, setShowLogin] = useState(true);
 
+  const onLogin = (username, pass) => {};
+
   return (
     <div className="container">
       <Router>
         <Routes>
-          <Route path="/Login" exact element={<Login />} />
+          <Route path="/Login" exact element={<Login onLogin={onLogin} />} />
           <Route element={<PrivateRoute />}>
             <Route
               path="/"
